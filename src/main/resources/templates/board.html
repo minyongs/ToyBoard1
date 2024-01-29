@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>레서는 바보야</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<h1>Welcome to the Board</h1>
+<div>
+    <!-- 글 작성 페이지로 이동하는 버튼 -->
+    <a th:href="@{/board/register}">
+        <button type="button">글 작성</button>
+    </a>
+    <!-- 글 목록 페이지로 이동하는 버튼 -->
+    <a th:href="@{/board/list}">
+        <button type="button">글 목록</button>
+    </a>
+</div>
+</body>
+</html>

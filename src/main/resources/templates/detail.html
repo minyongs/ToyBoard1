@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Board Detail</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        div {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Board Detail</h1>
+<div>
+    <p><strong>ID:</strong> <span th:text="${board.id}"></span></p>
+    <p><strong>Title:</strong> <span th:text="${board.title}"></span></p>
+    <p><strong>Content:</strong> <span th:text="${board.content}"></span></p>
+</div>
+</body>
+</html>
