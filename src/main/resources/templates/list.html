@@ -67,11 +67,14 @@
     <tr th:each="board : ${board}">
         <td th:text="${board.id}"></td>
         <td th:text="${board.title}"></td>
-        <td><a th:href="@{/board/detail/{id}(id=${board.id})}">상세보기</a></td>
         <td>
-            <button class="delete-button" onclick="confirmDelete(${board.id})">삭제</button>
+            <a th:href="@{/board/detail/{id}(id=${board.id})}" th:text="${board.content}">상세보기</a>
+        </td>
+        <td>
+            <a th:href="@{/board/delete/{id}(id=${board.id})}" class="delete-button">삭제</a>
         </td>
     </tr>
 </table>
+
 </body>
 </html>
