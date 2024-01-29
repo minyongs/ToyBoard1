@@ -44,20 +44,33 @@
         a:hover {
             text-decoration: underline;
         }
+
+        .delete-button {
+            background-color: #ff3333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-<h1>Board List</h1>
+<h1>글 목록</h1>
 <table>
     <tr>
-        <th>ID</th>
-        <th>Title</th>
-        <th>Details</th>
+        <th>글 번호</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>관리</th>
     </tr>
     <tr th:each="board : ${board}">
         <td th:text="${board.id}"></td>
         <td th:text="${board.title}"></td>
         <td><a th:href="@{/board/detail/{id}(id=${board.id})}">상세보기</a></td>
+        <td>
+            <button class="delete-button" onclick="confirmDelete(${board.id})">삭제</button>
+        </td>
     </tr>
 </table>
 </body>
