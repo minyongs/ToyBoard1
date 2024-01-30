@@ -1,11 +1,14 @@
 package org.example.toyboard1.controller.board;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.toyboard1.Entity.Board;
 import org.example.toyboard1.dto.BoardDto;
 import org.example.toyboard1.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -39,7 +42,10 @@ public class BoardController {
     }
     //데이터베이스에 저장만 한다
     @PostMapping("/registerPost")
-    public String registerPost(@ModelAttribute  BoardDto boardDto){
+    public String registerPost(@Valid @ModelAttribute BoardDto boardDto , BindingResult bindingResult){
+        if (bindingResult.hasErrors()) {
+            return "register"; // 에러가 있으면 폼 페이지로 반환
+        }
         boardService.register(boardDto);
         return "redirect:/board/list";
     }
