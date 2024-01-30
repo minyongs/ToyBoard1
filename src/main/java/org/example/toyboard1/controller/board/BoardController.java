@@ -1,14 +1,12 @@
-package org.example.toyboard1.controller;
+package org.example.toyboard1.controller.board;
 
 import lombok.RequiredArgsConstructor;
 import org.example.toyboard1.Entity.Board;
+import org.example.toyboard1.dto.BoardDto;
 import org.example.toyboard1.service.BoardService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/board")
@@ -28,7 +26,7 @@ public class BoardController {
         return "list";
     }
 
-    @GetMapping("detail/{id}")
+    @GetMapping("/detail/{id}")
     public String detail(@PathVariable Long id, Model model){
         model.addAttribute("board",boardService.showDetail(id));
         return "detail";
@@ -41,8 +39,8 @@ public class BoardController {
     }
     //데이터베이스에 저장만 한다
     @PostMapping("/registerPost")
-    public String registerPost(Board board){
-        boardService.register(board);
+    public String registerPost(@ModelAttribute  BoardDto boardDto){
+        boardService.register(boardDto);
         return "redirect:/board/list";
     }
     @GetMapping("/update/{id}")
@@ -54,15 +52,15 @@ public class BoardController {
     }
 
     @PostMapping("/update")
-    public String updatePost(Board board){
-        boardService.update(board);
+    public String updatePost(BoardDto boardDto){
+        boardService.update(boardDto);
         return "redirect:/board/list";
     }
 
-    @GetMapping("delete/{id}")
+    @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
         boardService.deleteBoard(id);
-        return "list";
+        return "redirect:/board/list";
 
     }
 }
