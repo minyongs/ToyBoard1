@@ -2,20 +2,25 @@ package org.example.toyboard1.controller.board;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.example.toyboard1.Entity.Board;
 import org.example.toyboard1.dto.BoardDto;
 import org.example.toyboard1.service.BoardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/board")
 @RequiredArgsConstructor
 public class BoardController {
+    private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+
+
     private final BoardService boardService;
+
+
 
     @GetMapping
     public String welcomePage(){
@@ -43,6 +48,7 @@ public class BoardController {
     //데이터베이스에 저장만 한다
     @PostMapping("/registerPost")
     public String registerPost(@Valid @ModelAttribute BoardDto boardDto , BindingResult bindingResult){
+        logger.info("Register log: {}",boardDto);
         if (bindingResult.hasErrors()) {
             return "register"; // 에러가 있으면 폼 페이지로 반환
         }
