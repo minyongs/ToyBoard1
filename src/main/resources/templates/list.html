@@ -61,12 +61,14 @@
     <tr>
         <th>글 번호</th>
         <th>제목</th>
+        <th>작성자</th> <!-- 작성자 열 제목 추가 -->
         <th>내용</th>
         <th>관리</th>
     </tr>
     <tr th:each="board : ${board}">
         <td th:text="${board.id}"></td>
         <td th:text="${board.title}"></td>
+        <td th:text="${board.writer}"></td> <!-- 작성자 데이터 추가 -->
         <td>
             <a th:href="@{/board/detail/{id}(id=${board.id})}" th:text="${board.content}">상세보기</a>
         </td>
